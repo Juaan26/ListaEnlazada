@@ -4,7 +4,7 @@ namespace ListaEnlazada
 {
     class ListaSimple<T>
     {
-        public Nodo<T> nodo { set; get; }
+       public Nodo<T> nodo { set; get; }
 
        public ListaSimple()
        {
@@ -36,7 +36,49 @@ namespace ListaEnlazada
             nodo.Siguiente = nuevoNodo;
             nodo = referencia;
        }
-        public Nodo<T> Buscar(T consulta)
+       public void Eliminar(T indice)
+        {
+            // Comprobación para que no pete si la lista está vacía y se intenta borrar
+            if (nodo == null)
+            {
+                Console.WriteLine("No hay elementos que eliminar");
+                return;
+            }
+            // ------------------------------------------------------------
+            //A la hora de iterar el nodo referencia es el siguiente nodo, es decir de base es el nodo 2 y el nodo 1 es ref anterior
+            Nodo<T> referencia = nodo.Siguiente;
+            Nodo<T> refAnterior = nodo;
+
+           
+            // si nuestra intención es eliminar el nodo 1, lo desasignamos de memoria y le pasamos a la lista como nuevo nodo inicial el nodo 2
+            if (EqualityComparer<T>.Default.Equals(refAnterior.Valor, indice))
+            {
+                //no es necesario ponerlo a null porque el garbage collector de C# lo acabará eliminando pero así es más orientativo
+                refAnterior = null
+                nodo = referencia;
+                return;
+
+            }
+            //iteramos en base a nuestras asignaciones para que cuando el nodo que queremos eliminar coincida con el nodo referencia le pasemos su siguiente a la referencia anterior
+            while (referencia != null)
+            {
+                //si coincide referencia con el nodo que queremos eliminar, asignamos el valor y en este caso convertimos el nodo a null para que sea mas orientativo en cuanto a que se supone que eliminamos el nodo
+                if(EqualityComparer<T>.Default.Equals(referencia.Valor, indice))
+                {
+                    refAnterior.Siguiente = referencia.Siguiente;
+                    //no es necesario ponerlo a null porque el garbage collector de C# lo acabará eliminando pero así es más orientativo
+                    referencia = null;
+                    return;
+
+                }
+
+                referencia = referencia.Siguiente;
+                refAnterior = refAnterior.Siguiente;
+                
+            }
+
+        }
+       public Nodo<T> Buscar(T consulta)
         {
             Nodo<T> referencia = nodo;
             //Que itere todo el bucle 

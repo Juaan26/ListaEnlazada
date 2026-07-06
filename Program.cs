@@ -14,7 +14,15 @@ namespace ListaEnlazada
             lista.InsertarAlFinal(new Nodo<int>(5));
             lista.InsertarAlFinal(new Nodo<int>(6));
             Nodo<int> Resultado = lista.Buscar(2);
-            Console.WriteLine("Resultado de la consulta: " + Resultado + "de valor "+ Resultado.Valor);
+            //Console.WriteLine("Resultado de la consulta: " + Resultado + "de valor "+ Resultado.Valor);
+            lista.Recorrer();
+            lista.Eliminar(1);
+            lista.Eliminar(2);
+            lista.Eliminar(4);
+            lista.Eliminar(5);
+            lista.Eliminar(6);
+            lista.Eliminar(1);
+            Console.WriteLine("Despues de borrar");
             lista.Recorrer();
             n = lista.nodo;
 
