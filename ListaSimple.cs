@@ -15,6 +15,21 @@ namespace ListaEnlazada
             nuevoNodo.Siguiente = nodo;
             nodo = nuevoNodo;
                
-        }
+       }
+       public void InsertarAlFinal(Nodo<T> nuevoNodo)
+       {
+            //Creamos una variable para no perder la referencia con todos los nodos anteriores
+            //porque mientras tengamos la referencia del primer nodo podemos acceder a todos
+            Nodo<T> referencia = nodo;
+            //Recorremos la lista hasta llegar al ultimo nodo que es el que no referencia ningun otro
+            while(nodo.Siguiente != null)
+            {
+                nodo = nodo.Siguiente;
+            }
+            //Cuando llegamos al ultimo nodo le asignamos el nuevo nodo como siguiente
+            nodo.Siguiente = nuevoNodo;
+            nodo = referencia;
+       }
+
     }
 }

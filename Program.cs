@@ -12,7 +12,8 @@ namespace ListaEnlazada
             lista.InsertarAlInicio(new Nodo<int>(2));
             lista.InsertarAlInicio(new Nodo<int>(3));
             lista.InsertarAlInicio(new Nodo<int>(4));
-             n = lista.nodo;
+            lista.InsertarAlFinal(new Nodo<int>(5));
+            n = lista.nodo;
 
             while (n != null)
             {
