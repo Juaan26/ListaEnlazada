@@ -8,14 +8,19 @@ namespace ListaEnlazada
         {
             Nodo<int> n = null;
             ListaSimple<int> lista = new ListaSimple<int>();
+            lista.InsertarAlInicio(new Nodo<int>(1));
+            lista.InsertarAlInicio(new Nodo<int>(2));
+            lista.InsertarAlFinal(new Nodo<int>(4));
             lista.InsertarAlFinal(new Nodo<int>(5));
+            lista.InsertarAlFinal(new Nodo<int>(6));
+            lista.Recorrer();
             n = lista.nodo;
 
-            while (n != null)
-            {
-                Console.WriteLine(n.Valor);
-                n = n.Siguiente;
-            }
+            //while (n != null)
+            //{
+            //    Console.WriteLine(n.Valor);
+            //    n = n.Siguiente;
+            //}
       
         }
     }

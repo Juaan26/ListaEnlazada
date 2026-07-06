@@ -36,6 +36,29 @@ namespace ListaEnlazada
             nodo.Siguiente = nuevoNodo;
             nodo = referencia;
        }
+       public void Recorrer()
+       {
 
+            if (nodo == null)
+            {
+                Console.Write("La lista está vacía");
+                return;
+            }
+
+            Nodo<T> referencia = nodo;
+
+            while (nodo.Siguiente != null)
+            {
+                Console.WriteLine(nodo.Valor);
+                nodo = nodo.Siguiente;
+            }
+
+            if (nodo.Siguiente == null)
+            {
+                Console.WriteLine(nodo.Valor);
+            }
+            nodo = referencia;
+
+        }
     }
 }
