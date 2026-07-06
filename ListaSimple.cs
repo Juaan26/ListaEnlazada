@@ -38,25 +38,21 @@ namespace ListaEnlazada
        }
        public void Recorrer()
        {
-
+            //Mensaje por si la lista está vacía
             if (nodo == null)
             {
                 Console.Write("La lista está vacía");
                 return;
             }
-
+            //Creamos variable para no perder las referencias al iterar
             Nodo<T> referencia = nodo;
-
-            while (nodo.Siguiente != null)
+            //Recorremos los nodos devolviendo su valor
+            while (nodo != null)
             {
                 Console.WriteLine(nodo.Valor);
                 nodo = nodo.Siguiente;
             }
-
-            if (nodo.Siguiente == null)
-            {
-                Console.WriteLine(nodo.Valor);
-            }
+            //reasignamos el valor del nodo inicial a nodo
             nodo = referencia;
 
         }
