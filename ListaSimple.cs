@@ -18,6 +18,12 @@ namespace ListaEnlazada
        }
        public void InsertarAlFinal(Nodo<T> nuevoNodo)
        {
+            //Primero comprobamos que la lista no esté vacía para que el programa no se rompa
+            if (nodo == null)
+            {
+                nodo = nuevoNodo;
+                return;
+            }
             //Creamos una variable para no perder la referencia con todos los nodos anteriores
             //porque mientras tengamos la referencia del primer nodo podemos acceder a todos
             Nodo<T> referencia = nodo;
