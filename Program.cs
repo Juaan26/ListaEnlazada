@@ -13,6 +13,8 @@ namespace ListaEnlazada
             lista.InsertarAlFinal(new Nodo<int>(4));
             lista.InsertarAlFinal(new Nodo<int>(5));
             lista.InsertarAlFinal(new Nodo<int>(6));
+            Nodo<int> Resultado = lista.Buscar(2);
+            Console.WriteLine("Resultado de la consulta: " + Resultado + "de valor "+ Resultado.Valor);
             lista.Recorrer();
             n = lista.nodo;
 

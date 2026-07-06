@@ -36,6 +36,25 @@ namespace ListaEnlazada
             nodo.Siguiente = nuevoNodo;
             nodo = referencia;
        }
+        public Nodo<T> Buscar(T consulta)
+        {
+            Nodo<T> referencia = nodo;
+            //Que itere todo el bucle 
+            while(referencia != null)
+            {
+                //Si mientras itera el bucle encuentra el resultado, retorna el resultado y finaliza la iteración
+
+                if (EqualityComparer<T>.Default.Equals(referencia.Valor, consulta))
+                {
+                    return (referencia);
+                }
+                referencia = referencia.Siguiente;
+               
+               
+            }
+           //si no encuentra nada retorna null
+            return null;
+        }
        public void Recorrer()
        {
             //Mensaje por si la lista está vacía
