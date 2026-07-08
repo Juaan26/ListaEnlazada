@@ -38,7 +38,7 @@ namespace ListaEnlazada
         {
             Nodo<T> referencia = nodo.Siguiente;
             Nodo<T> referenciaAnterior = nodo;
-            while(referencia.CompareTo(nuevoNodo) != 1)
+            while (referencia.CompareTo(nuevoNodo) != 1)
             {
                 referencia = referencia.Siguiente;
                 referenciaAnterior = referenciaAnterior.Siguiente;
@@ -123,6 +123,44 @@ namespace ListaEnlazada
                 Console.WriteLine(referencia.Valor);
                 referencia = referencia.Siguiente;
             }
+
+        }
+        public void InsertarEnPosicion(int posicion, T valor)
+        {
+            Nodo<T> referencia = nodo.Siguiente;
+            Nodo<T> referenciaAnterior = nodo;
+            int contador = -1;
+
+            if (referencia == null)
+            {
+                Console.WriteLine("fuera de rango");
+                return;
+            }
+            if (posicion < 0 || posicion == null)
+            {
+                return;
+            }else if (posicion == 0)
+            {
+                InsertarAlInicio(new Nodo<T>(valor));
+                return;
+            }
+            while (contador != posicion && referencia != null )
+            {
+                contador++;
+                referencia = referencia.Siguiente;
+                referenciaAnterior = referenciaAnterior.Siguiente;
+                if (contador == posicion)
+                {
+                    Nodo<T> nuevoNodo = new Nodo<T>(valor);
+                    nuevoNodo.Siguiente = referencia;
+                    Console.WriteLine(nuevoNodo.Siguiente.Valor);
+                    nuevoNodo = referenciaAnterior;
+                    Console.WriteLine(nuevoNodo.Valor);
+                    return;
+                }
+
+            }
+
 
         }
     }

@@ -10,10 +10,12 @@ namespace ListaEnlazada
             ListaSimple<int> lista = new ListaSimple<int>();
             lista.InsertarAlFinal(new Nodo<int>(1));
             lista.InsertarAlFinal(new Nodo<int>(2));
+            lista.InsertarEnPosicion(1, 23);
             lista.InsertarAlFinal(new Nodo<int>(3));
+            lista.InsertarEnPosicion(1, 23);
             lista.InsertarAlFinal(new Nodo<int>(4));
             lista.InsertarAlFinal(new Nodo<int>(5));
-            lista.InsertarOrdenado(new Nodo<int>(3));
+            //lista.InsertarOrdenado(new Nodo<int>(3));
             //lista.InsertarAlFinal(new Nodo<int>(4));
             //lista.InsertarAlFinal(new Nodo<int>(5));
             //lista.InsertarAlFinal(new Nodo<int>(6));
