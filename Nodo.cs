@@ -2,7 +2,7 @@ using System;
 
 namespace ListaEnlazada
 {
-    class Nodo<T>:IComparable<Nodo<T>> 
+    class Nodo<T>:IComparable<Nodo<T>> where T : IComparable<T>
     {
         public T Valor { get; set; }
         public Nodo<T>? Siguiente {  get; set; }
@@ -16,9 +16,7 @@ namespace ListaEnlazada
 
         public int CompareTo(Nodo<T>? other)
         {
-            if (Comparer<T>.Default.Compare(Valor, other.Valor) >= 0) return 1;
-            if (Comparer<T>.Default.Compare(Valor, other.Valor) < 0) return -1;
-            return 0;
+            return Valor.CompareTo(other.Valor);
         }
     }
 }
