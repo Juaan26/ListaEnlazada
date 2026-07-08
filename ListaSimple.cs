@@ -2,9 +2,9 @@ using System;
 
 namespace ListaEnlazada
 {
-    class ListaSimple<T>
+    class ListaSimple<T> where T : IComparable<T>
     {
-        public Nodo<T> nodo { set; get; }
+        public Nodo<T>? nodo { set; get; }
 
         public ListaSimple()
         {
@@ -33,6 +33,18 @@ namespace ListaEnlazada
                 referencia = referencia.Siguiente;
             }
             referencia.Siguiente = nuevoNodo;
+        }
+        public void InsertarOrdenado(Nodo<T> nuevoNodo)
+        {
+            Nodo<T> referencia = nodo.Siguiente;
+            Nodo<T> referenciaAnterior = nodo;
+            while(referencia.CompareTo(nuevoNodo) != 1)
+            {
+                referencia = referencia.Siguiente;
+                referenciaAnterior = referenciaAnterior.Siguiente;
+            }
+            nuevoNodo.Siguiente = referenciaAnterior.Siguiente;
+            referenciaAnterior.Siguiente = nuevoNodo;
         }
         public void Eliminar(T indice)
         {
