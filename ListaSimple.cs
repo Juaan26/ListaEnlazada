@@ -4,40 +4,43 @@ namespace ListaEnlazada
 {
     class ListaSimple<T> where T : IComparable<T>
     {
-        public Nodo<T>? nodo { set; get; }
+        public Nodo<T>? Head { set; get; }
 
         public ListaSimple()
         {
-            nodo = null;
+            Head = null;
         }
-        public void InsertarAlInicio(Nodo<T> nuevoNodo)
+        public void InsertarAlInicio(T valor)
         {
-            nuevoNodo.Siguiente = nodo;
-            nodo = nuevoNodo;
+            Nodo<T> nuevoNodo = new Nodo<T>(valor);
+            nuevoNodo.Siguiente = Head;
+            Head = nuevoNodo;
 
         }
-        public void InsertarAlFinal(Nodo<T> nuevoNodo)
+        public void InsertarAlFinal(T valor)
         {
+            Nodo<T> nuevoNodo = new Nodo<T>(valor);
             //Primero comprobamos que la lista no esté vacía para que el programa no se rompa
-            if (nodo == null)
+            if (Head == null)
             {
-                nodo = nuevoNodo;
+                Head = nuevoNodo;
                 return;
             }
             //Creamos una variable para no perder la referencia con todos los nodos anteriores
-            //porque mientras tengamos la referencia del primer nodo podemos acceder a todos
-            Nodo<T> referencia = nodo;
-            //Recorremos la lista hasta llegar al ultimo nodo que es el que no referencia ningun otro (o lo que es lo mismo, no tiene un Siguiente)
+            //porque mientras tengamos la referencia del primer Head podemos acceder a todos
+            Nodo<T> referencia = Head;
+            //Recorremos la lista hasta llegar al ultimo Head que es el que no referencia ningun otro (o lo que es lo mismo, no tiene un Siguiente)
             while (referencia.Siguiente != null)
             {
                 referencia = referencia.Siguiente;
             }
             referencia.Siguiente = nuevoNodo;
         }
-        public void InsertarOrdenado(Nodo<T> nuevoNodo)
+        public void InsertarOrdenado(T valor)
         {
-            Nodo<T> referencia = nodo.Siguiente;
-            Nodo<T> referenciaAnterior = nodo;
+            Nodo<T> nuevoNodo = new Nodo<T>(valor);
+            Nodo<T> referencia = Head.Siguiente;
+            Nodo<T> referenciaAnterior = Head;
             while (referencia.CompareTo(nuevoNodo) != 1)
             {
                 referencia = referencia.Siguiente;
@@ -49,30 +52,30 @@ namespace ListaEnlazada
         public void Eliminar(T indice)
         {
             // Comprobación para que no pete si la lista está vacía y se intenta borrar
-            if (nodo == null)
+            if (Head == null)
             {
                 Console.WriteLine("No hay elementos que eliminar");
                 return;
             }
             // ------------------------------------------------------------
-            //A la hora de iterar el nodo referencia es el siguiente nodo, es decir de base es el nodo 2 y el nodo 1 es ref anterior
-            Nodo<T> referencia = nodo.Siguiente;
-            Nodo<T> refAnterior = nodo;
+            //A la hora de iterar el Head referencia es el siguiente Head, es decir de base es el Head 2 y el Head 1 es ref anterior
+            Nodo<T> referencia = Head.Siguiente;
+            Nodo<T> refAnterior = Head;
 
 
-            // si nuestra intención es eliminar el nodo 1, lo desasignamos de memoria y le pasamos a la lista como nuevo nodo inicial el nodo 2
+            // si nuestra intención es eliminar el Head 1, lo desasignamos de memoria y le pasamos a la lista como nuevo Head inicial el Head 2
             if (EqualityComparer<T>.Default.Equals(refAnterior.Valor, indice))
             {
                 //no es necesario ponerlo a null porque el garbage collector de C# lo acabará eliminando pero así es más orientativo
                 refAnterior = null;
-                nodo = referencia;
+                Head = referencia;
                 return;
 
             }
-            //iteramos en base a nuestras asignaciones para que cuando el nodo que queremos eliminar coincida con el nodo referencia le pasemos su siguiente a la referencia anterior
+            //iteramos en base a nuestras asignaciones para que cuando el Head que queremos eliminar coincida con el Head referencia le pasemos su siguiente a la referencia anterior
             while (referencia != null)
             {
-                //si coincide referencia con el nodo que queremos eliminar, asignamos el valor y en este caso convertimos el nodo a null para que sea mas orientativo en cuanto a que se supone que eliminamos el nodo
+                //si coincide referencia con el Head que queremos eliminar, asignamos el valor y en este caso convertimos el Head a null para que sea mas orientativo en cuanto a que se supone que eliminamos el Head
                 if (EqualityComparer<T>.Default.Equals(referencia.Valor, indice))
                 {
                     refAnterior.Siguiente = referencia.Siguiente;
@@ -90,7 +93,7 @@ namespace ListaEnlazada
         }
         public Nodo<T> Buscar(T consulta)
         {
-            Nodo<T> referencia = nodo;
+            Nodo<T> referencia = Head;
             //Que itere todo el bucle 
             while (referencia != null)
             {
@@ -110,13 +113,13 @@ namespace ListaEnlazada
         public void Recorrer()
         {
             //Mensaje por si la lista está vacía
-            if (nodo == null)
+            if (Head == null)
             {
                 Console.Write("La lista está vacía");
                 return;
             }
             //Creamos variable para no perder las referencias al iterar
-            Nodo<T> referencia = nodo;
+            Nodo<T> referencia = Head;
             //Recorremos los nodos devolviendo su valor
             while (referencia != null)
             {
@@ -127,39 +130,39 @@ namespace ListaEnlazada
         }
         public void InsertarEnPosicion(int posicion, T valor)
         {
-            Nodo<T> referencia = nodo.Siguiente;
-            Nodo<T> referenciaAnterior = nodo;
-            int contador = -1;
 
+          
+            if (posicion == 0 || Head == null || posicion < 0)
+            {
+                InsertarAlInicio(valor);
+                return;
+            }
+          
+            Nodo<T> referencia = Head;
+            Nodo<T> referenciaAnterior = null;
+            int contador = 0;
+
+            while (contador != posicion  && referencia !=null)
+            {
+                referenciaAnterior = referencia
+                referencia = referencia.Siguiente;
+                contador++;
+
+            }
             if (referencia == null)
             {
                 Console.WriteLine("fuera de rango");
                 return;
             }
-            if (posicion < 0 || posicion == null)
+            if (contador != posicion - 1)
             {
-                return;
-            }else if (posicion == 0)
-            {
-                InsertarAlInicio(new Nodo<T>(valor));
+                InsertarAlFinal(valor);
                 return;
             }
-            while (contador != posicion && referencia != null )
-            {
-                contador++;
-                referencia = referencia.Siguiente;
-                referenciaAnterior = referenciaAnterior.Siguiente;
-                if (contador == posicion)
-                {
-                    Nodo<T> nuevoNodo = new Nodo<T>(valor);
-                    nuevoNodo.Siguiente = referencia;
-                    Console.WriteLine(nuevoNodo.Siguiente.Valor);
-                    nuevoNodo = referenciaAnterior;
-                    Console.WriteLine(nuevoNodo.Valor);
-                    return;
-                }
 
-            }
+            Nodo<T> nuevoNodo = new Nodo<T>(valor);
+            nuevoNodo.Siguiente = referencia;
+            referenciaAnterior.Siguiente = nuevoNodo;
 
 
         }
