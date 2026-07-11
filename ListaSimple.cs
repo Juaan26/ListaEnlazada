@@ -131,20 +131,20 @@ namespace ListaEnlazada
         public void InsertarEnPosicion(int posicion, T valor)
         {
 
-          
+
             if (posicion == 0 || Head == null || posicion < 0)
             {
                 InsertarAlInicio(valor);
                 return;
             }
-          
+
             Nodo<T> referencia = Head;
             Nodo<T> referenciaAnterior = null;
             int contador = 0;
 
-            while (contador != posicion  && referencia !=null)
+            while (contador != posicion && referencia != null)
             {
-                referenciaAnterior = referencia
+                referenciaAnterior = referencia;
                 referencia = referencia.Siguiente;
                 contador++;
 
@@ -154,11 +154,6 @@ namespace ListaEnlazada
                 Console.WriteLine("fuera de rango");
                 return;
             }
-            if (contador != posicion - 1)
-            {
-                InsertarAlFinal(valor);
-                return;
-            }
 
             Nodo<T> nuevoNodo = new Nodo<T>(valor);
             nuevoNodo.Siguiente = referencia;
@@ -166,5 +161,37 @@ namespace ListaEnlazada
 
 
         }
+        public bool EliminarEnPosicion(int posicion)
+        {
+            Nodo<T> referencia = Head;
+            Nodo<T> refAnterior = null;
+            int contador = 0;
+            if (Head == null)
+            {
+                Console.WriteLine("La lista está vacía");
+                return false;
+            }
+            if(posicion == 0) 
+            {
+                Head = Head.Siguiente;
+                return true;
+            }
+            while (posicion != contador && referencia != null)
+            {
+                refAnterior = referencia;
+                referencia = referencia.Siguiente;
+                contador++;
+
+                if (referencia == null)
+                {
+                    Console.WriteLine("Fuera de rango");
+                    return false;
+                }
+            }
+            refAnterior.Siguiente = referencia.Siguiente;            
+            return true;
+
+        }
+
     }
 }

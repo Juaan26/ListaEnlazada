@@ -15,6 +15,7 @@ namespace ListaEnlazada
             lista.InsertarEnPosicion(1, 23);
             lista.InsertarAlInicio(4);
             lista.InsertarAlInicio(5);
+            lista.EliminarEnPosicion(4);
  
             lista.Recorrer();
             
