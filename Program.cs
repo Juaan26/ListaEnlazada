@@ -15,8 +15,9 @@ namespace ListaEnlazada
             lista.InsertarEnPosicion(1, 23);
             lista.InsertarAlInicio(4);
             lista.InsertarAlInicio(5);
+            Console.WriteLine(lista.Contar() + " sí esto es el numero de nodos ");
             lista.EliminarEnPosicion(4);
- 
+            Console.WriteLine(lista.Contar() + " sí esto es el numero de nodos ");
             lista.Recorrer();
             
       

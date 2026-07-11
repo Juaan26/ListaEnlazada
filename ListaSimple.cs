@@ -192,6 +192,17 @@ namespace ListaEnlazada
             return true;
 
         }
+        public int Contar()
+        {
+            int contador = 0;
+            Nodo<T> referencia = Head;
 
+            while( referencia != null)
+            {
+                referencia = referencia.Siguiente;
+                contador++;
+            }
+            return contador ;
+        }
     }
 }
