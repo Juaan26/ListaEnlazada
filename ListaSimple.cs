@@ -2,7 +2,7 @@ using System;
 
 namespace ListaEnlazada
 {
-    class ListaSimple<T> where T : IComparable<T>
+    class ListaSimple<T> : IEnumerable<T> where T : IComparable<T>, 
     {
         public Nodo<T>? Head { set; get; }
 
@@ -132,7 +132,7 @@ namespace ListaEnlazada
         {
 
 
-            if (posicion == 0 || Head == null || posicion < 0)
+            if (posicion <= 0 || Head == null)
             {
                 InsertarAlInicio(valor);
                 return;
@@ -227,6 +227,31 @@ namespace ListaEnlazada
                 contador++;
             }
             referencia.Siguiente = null;
+        }
+        public ListaSimple<T> Clonar()
+        {
+            Nodo<T> referencia = Head;
+            ListaSimple<T> nuevaLista = new ListaSimple<T>();
+            while (referencia != null)
+            {
+                nuevaLista.InsertarAlFinal(referencia.Valor);
+                referencia = referencia.Siguiente;
+            }
+            return nuevaLista;
+
+        }
+        public IEnumerator<T> GetEnumerator()
+        {
+            Nodo<T> actual = Head;
+            while (actual != null)
+            {
+                yield return actual.Valor;
+                actual = actual.Siguiente;
+            }
+        }
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
 
     }
