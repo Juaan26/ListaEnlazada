@@ -2,7 +2,7 @@ using System;
 
 namespace ListaEnlazada
 {
-    class ListaSimple<T> : IEnumerable<T> where T : IComparable<T>, 
+    class ListaSimple<T> : IEnumerable<T> where T : IComparable<T> 
     {
         public Nodo<T>? Head { set; get; }
 
@@ -252,6 +252,32 @@ namespace ListaEnlazada
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
+        }
+        public T Maximo()
+        {
+            if (Head == null)
+                Console.WriteLine("La lista está vacía");
+            T max = Head.Valor; 
+            foreach (T item in this) 
+            {
+                if (item.CompareTo(max) > 0)
+                    max = item;
+            }
+            return max;
+        }
+
+        public T Minimo()
+        {
+            if (Head == null)
+                Console.WriteLine("La lista está vacía");
+
+            T min = Head.Valor;
+            foreach (T item in this)
+            {
+                if (item.CompareTo(min) < 0)
+                    min = item;
+            }
+            return min;
         }
 
     }
