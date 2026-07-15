@@ -365,6 +365,11 @@ namespace ListaEnlazada
             return true;
 
         }
+        void Vaciar()
+        {
+            this.Head = null;
+        }
+
 
     }
 }
