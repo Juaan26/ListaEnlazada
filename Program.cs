@@ -12,9 +12,12 @@ namespace ListaEnlazada
             lista.InsertarAlInicio(2);
             lista.InsertarEnPosicion(1, 23);
             lista.InsertarAlInicio(3);
+            lista.InsertarAlInicio(5);
             lista.InsertarEnPosicion(1, 23);
             lista.InsertarAlInicio(4);
+            lista.InsertarAlInicio(4);
             lista.InsertarAlInicio(5);
+            lista.InsertarAlInicio(4);
             lista.EliminarEnPosicion(4);
             Console.WriteLine(lista.Contar() + " sí esto es el numero de nodos ");
             lista.Recorrer();
@@ -25,6 +28,7 @@ namespace ListaEnlazada
             Console.WriteLine(lista.Minimo() + " Este es el minimo valor");
             Console.WriteLine(lista.Maximo() + " Este es el maximo valor");
             lista.EliminarDuplicados();
+            lista.Recorrer();
 
         }
     }

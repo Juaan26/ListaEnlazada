@@ -291,12 +291,33 @@ namespace ListaEnlazada
             if (Head == null)
             {
                 Console.WriteLine("La lista está vacía");
+                return;
             }
-            //T ref = Head.Valor;
-            foreach (Nodo<T> item in this)
+
+            Nodo<T> Guardado = Head;
+            
+            while (Guardado != null)
             {
-                Console.WriteLine(item.Valor);
+                Nodo<T> PreSeleccionado = null;
+                Nodo<T> Seleccionado = Guardado.Siguiente;
+                while (Seleccionado != null)
+                {
+                    if( Seleccionado.Valor.CompareTo(Guardado.Siguiente.Valor) == 0 && Guardado.Valor.CompareTo(Seleccionado.Valor) == 0)
+                    {
+                        Guardado.Siguiente = Seleccionado.Siguiente;
+                        Seleccionado = Seleccionado.Siguiente;
+
+                    }
+                    if (Guardado.Valor.CompareTo(Seleccionado.Valor) == 0 && PreSeleccionado != null)
+                    {
+                        PreSeleccionado.Siguiente = Seleccionado.Siguiente;
+                    }
+                    PreSeleccionado = Seleccionado;
+                    Seleccionado = Seleccionado.Siguiente;
+                }
+                Guardado = Guardado.Siguiente;
             }
+
         }
 
     }
