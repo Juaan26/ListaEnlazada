@@ -295,14 +295,14 @@ namespace ListaEnlazada
             }
 
             Nodo<T> Guardado = Head;
-            
+
             while (Guardado != null)
             {
                 Nodo<T> PreSeleccionado = null;
                 Nodo<T> Seleccionado = Guardado.Siguiente;
                 while (Seleccionado != null)
                 {
-                    if( Seleccionado.Valor.CompareTo(Guardado.Siguiente.Valor) == 0 && Guardado.Valor.CompareTo(Seleccionado.Valor) == 0)
+                    if (Seleccionado.Valor.CompareTo(Guardado.Siguiente.Valor) == 0 && Guardado.Valor.CompareTo(Seleccionado.Valor) == 0)
                     {
                         Guardado.Siguiente = Seleccionado.Siguiente;
                         Seleccionado = Seleccionado.Siguiente;
@@ -317,6 +317,52 @@ namespace ListaEnlazada
                 }
                 Guardado = Guardado.Siguiente;
             }
+
+        }
+
+        public static ListaSimple<T> Unir(ListaSimple<T> a, ListaSimple<T> b)
+        {
+            ListaSimple<T> listaUnida = new ListaSimple<T>();
+            if (a != null && b != null)
+            {
+                foreach (Nodo<T> item in a)
+                {
+                    listaUnida.InsertarAlFinal(item.Valor);
+                }
+                foreach (Nodo<T> item in b)
+                {
+                    listaUnida.InsertarAlFinal(item.Valor);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Una o las dos listas no existen");
+                return null;
+            }
+
+            return listaUnida;
+        }
+        bool EsIgual(ListaSimple<T> otra)
+        {
+            int longitudMiLista = Contar(this);
+            int vlongitudOtraLista = Contar(otra);
+            if (longitudMiLista != vlongitudOtraLista)
+            {
+                return false;
+            }
+
+            Nodo<T> NodoA = this.Head;
+            Nodo<T> NodoB = otra.Head;
+            while (NodoB != null && NodoA != null)
+            {
+                if (NodoA.Valor.CompareTo(NodoB.Valor) != 0)
+                {
+                    return false;
+                }
+                NodoA = NodoA.Siguiente;
+                NodoB = NodoB.Siguiente;
+            }
+            return true;
 
         }
 
