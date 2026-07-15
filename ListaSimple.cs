@@ -2,7 +2,7 @@ using System;
 
 namespace ListaEnlazada
 {
-    class ListaSimple<T> : IEnumerable<T> where T : IComparable<T> 
+    class ListaSimple<T> : IEnumerable<Nodo<T>> where T : IComparable<T>
     {
         public Nodo<T>? Head { set; get; }
 
@@ -171,7 +171,7 @@ namespace ListaEnlazada
                 Console.WriteLine("La lista está vacía");
                 return false;
             }
-            if(posicion == 0) 
+            if (posicion == 0)
             {
                 Head = Head.Siguiente;
                 return true;
@@ -188,7 +188,7 @@ namespace ListaEnlazada
                     return false;
                 }
             }
-            refAnterior.Siguiente = referencia.Siguiente;            
+            refAnterior.Siguiente = referencia.Siguiente;
             return true;
 
         }
@@ -197,32 +197,32 @@ namespace ListaEnlazada
             int contador = 0;
             Nodo<T> referencia = Head;
 
-            while( referencia != null)
+            while (referencia != null)
             {
                 referencia = referencia.Siguiente;
                 contador++;
             }
-            return contador ;
+            return contador;
         }
         public void Invertir()
         {
-            if(Head == null) 
+            if (Head == null)
             {
                 Console.WriteLine("No se puede invertir una lista vacía");
                 return;
             }
             Nodo<T> referencia = Head;
             int longitud = Contar();
-            Console.WriteLine(longitud+ "lenght");
+            Console.WriteLine(longitud + "lenght");
             int contador = 0;
-            while(referencia != null )
+            while (referencia != null)
             {
                 InsertarAlInicio(referencia.Valor);
                 referencia = referencia.Siguiente;
             }
             referencia = Head;
-            while (contador != longitud -1)
-            { 
+            while (contador != longitud - 1)
+            {
                 referencia = referencia.Siguiente;
                 contador++;
             }
@@ -240,12 +240,12 @@ namespace ListaEnlazada
             return nuevaLista;
 
         }
-        public IEnumerator<T> GetEnumerator()
+        public IEnumerator<Nodo<T>> GetEnumerator()
         {
             Nodo<T> actual = Head;
             while (actual != null)
             {
-                yield return actual.Valor;
+                yield return actual;
                 actual = actual.Siguiente;
             }
         }
@@ -256,12 +256,16 @@ namespace ListaEnlazada
         public T Maximo()
         {
             if (Head == null)
-                Console.WriteLine("La lista está vacía");
-            T max = Head.Valor; 
-            foreach (T item in this) 
             {
-                if (item.CompareTo(max) > 0)
-                    max = item;
+                Console.WriteLine("La lista está vacía");
+            }
+
+            T max = Head.Valor;
+            foreach (Nodo<T> item in this)
+            {
+                T valor = item.Valor;
+                if (valor.CompareTo(max) > 0)
+                    max = valor;
             }
             return max;
         }
@@ -269,15 +273,30 @@ namespace ListaEnlazada
         public T Minimo()
         {
             if (Head == null)
-                Console.WriteLine("La lista está vacía");
-
-            T min = Head.Valor;
-            foreach (T item in this)
             {
-                if (item.CompareTo(min) < 0)
-                    min = item;
+                Console.WriteLine("La lista está vacía");
+            }
+            T min = Head.Valor;
+            foreach (Nodo<T> item in this)
+            {
+                T valor = item.Valor;
+                if (valor.CompareTo(min) < 0)
+                    min = valor;
             }
             return min;
+        }
+
+        public void EliminarDuplicados()
+        {
+            if (Head == null)
+            {
+                Console.WriteLine("La lista está vacía");
+            }
+            //T ref = Head.Valor;
+            foreach (Nodo<T> item in this)
+            {
+                Console.WriteLine(item.Valor);
+            }
         }
 
     }

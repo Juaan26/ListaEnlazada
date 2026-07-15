@@ -22,7 +22,9 @@ namespace ListaEnlazada
             lista.Invertir();
             Console.WriteLine(lista.Contar() + " sí esto es el numero de nodos ");
             lista.Recorrer();
-
+            Console.WriteLine(lista.Minimo() + " Este es el minimo valor");
+            Console.WriteLine(lista.Maximo() + " Este es el maximo valor");
+            lista.EliminarDuplicados();
 
         }
     }
