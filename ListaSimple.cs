@@ -2,7 +2,7 @@ using System;
 
 namespace ListaEnlazada
 {
-    class ListaSimple<T> : IEnumerable<Nodo<T>> where T : IComparable<T>
+    class ListaSimple<T> : IEnumerable<T> where T : IComparable<T>
     {
         public Nodo<T>? Head { set; get; }
 
@@ -240,12 +240,12 @@ namespace ListaEnlazada
             return nuevaLista;
 
         }
-        public IEnumerator<Nodo<T>> GetEnumerator()
+        public IEnumerator<T> GetEnumerator()
         {
             Nodo<T> actual = Head;
             while (actual != null)
             {
-                yield return actual;
+                yield return actual.Valor;
                 actual = actual.Siguiente;
             }
         }
@@ -261,11 +261,10 @@ namespace ListaEnlazada
             }
 
             T max = Head.Valor;
-            foreach (Nodo<T> item in this)
+            foreach (T item in this)
             {
-                T valor = item.Valor;
-                if (valor.CompareTo(max) > 0)
-                    max = valor;
+                if (item.CompareTo(max) > 0)
+                    max = item;
             }
             return max;
         }
@@ -277,11 +276,10 @@ namespace ListaEnlazada
                 Console.WriteLine("La lista está vacía");
             }
             T min = Head.Valor;
-            foreach (Nodo<T> item in this)
+            foreach (T item in this)
             {
-                T valor = item.Valor;
-                if (valor.CompareTo(min) < 0)
-                    min = valor;
+                if (item.CompareTo(min) < 0)
+                    min = item;
             }
             return min;
         }
@@ -325,13 +323,13 @@ namespace ListaEnlazada
             ListaSimple<T> listaUnida = new ListaSimple<T>();
             if (a != null && b != null)
             {
-                foreach (Nodo<T> item in a)
+                foreach (T item in a)
                 {
-                    listaUnida.InsertarAlFinal(item.Valor);
+                    listaUnida.InsertarAlFinal(item);
                 }
-                foreach (Nodo<T> item in b)
+                foreach (T item in b)
                 {
-                    listaUnida.InsertarAlFinal(item.Valor);
+                    listaUnida.InsertarAlFinal(item);
                 }
             }
             else
@@ -342,10 +340,10 @@ namespace ListaEnlazada
 
             return listaUnida;
         }
-        bool EsIgual(ListaSimple<T> otra)
+        public bool EsIgual(ListaSimple<T> otra)
         {
-            int longitudMiLista = Contar(this);
-            int vlongitudOtraLista = Contar(otra);
+            int longitudMiLista = this.Contar();
+            int vlongitudOtraLista = otra.Contar();
             if (longitudMiLista != vlongitudOtraLista)
             {
                 return false;
@@ -365,9 +363,38 @@ namespace ListaEnlazada
             return true;
 
         }
-        void Vaciar()
+        public void Vaciar()
         {
             this.Head = null;
+        }
+
+        public void InsertarRango(IEnumerable<T> elementos)
+        {
+            foreach (T elemento in elementos)
+            {
+                InsertarAlFinal(elemento);
+            }
+
+        }
+        public ListaSimple<T> SubLista(int inicio, int cantidad)
+        {
+            ListaSimple<T> subLista = new ListaSimple<T>();
+            Nodo<T> aux = Head;
+            int contador;
+            int contadorAux;
+            while (contador < inicio)
+            {
+                aux = aux.Siguiente;
+                contador++
+            }
+            while (contadorAux < cantidad - 1)
+            {
+                subLista.InsertarAlFinal(aux);
+                contadorAux++
+            }
+            return subLista;
+
+
         }
 
 
