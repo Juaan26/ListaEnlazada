@@ -380,21 +380,39 @@ namespace ListaEnlazada
         {
             ListaSimple<T> subLista = new ListaSimple<T>();
             Nodo<T> aux = Head;
-            int contador;
-            int contadorAux;
+            int contador = 0;
+            int contadorAux = 0;
             while (contador < inicio)
             {
                 aux = aux.Siguiente;
-                contador++
+                contador++;
             }
             while (contadorAux < cantidad - 1)
             {
-                subLista.InsertarAlFinal(aux);
-                contadorAux++
+                subLista.InsertarAlFinal(aux.Valor);
+                contadorAux++;
             }
             return subLista;
 
 
+        }
+        public void Rotar(int k)
+        {
+            Nodo<T> aux = Head;
+            int contador = 0;
+            if(Head == null )
+            {
+                Console.WriteLine("No se puede rotar una lista vacía");
+                return;
+            }
+            while (contador < k)
+            {
+                contador++;
+                InsertarAlFinal(aux.Valor);
+                aux = aux.Siguiente;
+                
+            }
+            Head = aux;
         }
 
 
