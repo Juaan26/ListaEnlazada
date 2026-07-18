@@ -374,17 +374,22 @@ namespace ListaEnlazada
         public ListaSimple<T> SubLista(int inicio, int cantidad)
         {
             ListaSimple<T> subLista = new ListaSimple<T>();
+            if(Head == null)
+            {
+                return null;
+            }
             Nodo<T> aux = Head;
             int contador = 0;
             int contadorAux = 0;
-            while (contador < inicio)
+            while (contador < inicio && aux != null)
             {
                 aux = aux.Siguiente;
                 contador++;
             }
-            while (contadorAux < cantidad - 1)
+            while (contadorAux <= cantidad && aux != null)
             {
                 subLista.InsertarAlFinal(aux.Valor);
+                aux = aux.Siguiente;
                 contadorAux++;
             }
             return subLista;

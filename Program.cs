@@ -21,6 +21,9 @@ namespace ListaEnlazada
             Console.WriteLine("Sí, lo hemos invertido");
             lista2.Invertir();
             lista2.Recorrer();
+            Console.WriteLine("lista3: ");
+            ListaSimple<int> lista3 = lista2.SubLista(4, 6);
+            lista3.Recorrer();
 
 
             //Console.Write(lista.EsIgual(lista2));
