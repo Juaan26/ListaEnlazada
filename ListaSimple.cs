@@ -205,28 +205,23 @@ namespace ListaEnlazada
             return contador;
         }
         public void Invertir()
+
         {
             if (Head == null)
             {
                 Console.WriteLine("No se puede invertir una lista vacía");
                 return;
             }
-            Nodo<T> referencia = Head;
-            int longitud = Contar();
-            Console.WriteLine(longitud + "lenght");
-            int contador = 0;
-            while (referencia != null)
+            Nodo<T> chivato = Head;
+            Nodo<T> aux = Head.Siguiente;
+
+            while( chivato.Siguiente != null)
             {
-                InsertarAlInicio(referencia.Valor);
-                referencia = referencia.Siguiente;
+
+                chivato.Siguiente = aux.Siguiente;
+                aux.Siguiente = chivato;
+                Head = aux;
             }
-            referencia = Head;
-            while (contador != longitud - 1)
-            {
-                referencia = referencia.Siguiente;
-                contador++;
-            }
-            referencia.Siguiente = null;
         }
         public ListaSimple<T> Clonar()
         {

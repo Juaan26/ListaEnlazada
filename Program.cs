@@ -16,8 +16,9 @@ namespace ListaEnlazada
             lista2.InsertarAlFinal(3);
             lista2.InsertarAlFinal(4);
             lista2.InsertarAlFinal(5);
-            Console.WriteLine("Rotamos: ");
-            lista2.Rotar(2);
+            lista2.InsertarAlFinal(6);
+            lista2.Recorrer();
+            lista2.Invertir();
             lista2.Recorrer();
 
 
