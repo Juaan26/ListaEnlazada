@@ -18,6 +18,7 @@ namespace ListaEnlazada
             lista2.InsertarAlFinal(5);
             lista2.InsertarAlFinal(6);
             lista2.Recorrer();
+            Console.WriteLine("Sí, lo hemos invertido");
             lista2.Invertir();
             lista2.Recorrer();
 

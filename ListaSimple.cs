@@ -205,7 +205,6 @@ namespace ListaEnlazada
             return contador;
         }
         public void Invertir()
-
         {
             if (Head == null)
             {
@@ -215,12 +214,13 @@ namespace ListaEnlazada
             Nodo<T> chivato = Head;
             Nodo<T> aux = Head.Siguiente;
 
-            while( chivato.Siguiente != null)
+            while( aux != null)
             {
 
                 chivato.Siguiente = aux.Siguiente;
-                aux.Siguiente = chivato;
+                aux.Siguiente = Head;
                 Head = aux;
+                aux = chivato.Siguiente;
             }
         }
         public ListaSimple<T> Clonar()
