@@ -18,12 +18,9 @@ namespace ListaEnlazada
             lista2.InsertarAlFinal(5);
             lista2.InsertarAlFinal(6);
             lista2.Recorrer();
-            Console.WriteLine("Sí, lo hemos invertido");
-            lista2.Invertir();
+            Console.WriteLine("rotamos");
+            lista2.Rotar(2);
             lista2.Recorrer();
-            Console.WriteLine("lista3: ");
-            ListaSimple<int> lista3 = lista2.SubLista(4, 6);
-            lista3.Recorrer();
 
 
             //Console.Write(lista.EsIgual(lista2));

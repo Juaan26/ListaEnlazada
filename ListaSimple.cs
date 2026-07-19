@@ -399,20 +399,31 @@ namespace ListaEnlazada
         public void Rotar(int k)
         {
             Nodo<T> aux = Head;
+            Nodo<T> preAux = null;
+            Nodo<T> refHead = Head;
             int contador = 0;
-            if(Head == null )
+            if(Head == null)
             {
                 Console.WriteLine("No se puede rotar una lista vacía");
+                return;
+            }
+            if (k == 0)
+            {
                 return;
             }
             while (contador < k)
             {
                 contador++;
-                InsertarAlFinal(aux.Valor);
+                preAux = aux;
                 aux = aux.Siguiente;
-                
             }
             Head = aux;
+            preAux.Siguiente = null;
+            while ( aux.Siguiente != null)
+            {
+                aux = aux.Siguiente;
+            }
+            aux.Siguiente = refHead;
         }
 
 
