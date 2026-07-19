@@ -214,7 +214,7 @@ namespace ListaEnlazada
             Nodo<T> chivato = Head;
             Nodo<T> aux = Head.Siguiente;
 
-            while( aux != null)
+            while (aux != null)
             {
 
                 chivato.Siguiente = aux.Siguiente;
@@ -374,7 +374,7 @@ namespace ListaEnlazada
         public ListaSimple<T> SubLista(int inicio, int cantidad)
         {
             ListaSimple<T> subLista = new ListaSimple<T>();
-            if(Head == null)
+            if (Head == null)
             {
                 return null;
             }
@@ -394,6 +394,23 @@ namespace ListaEnlazada
             }
             return subLista;
 
+        public bool TieneCiclo()
+        {
+            Nodo<T> liebre = Head;
+            Nodo<T> tortuga = Head;
+            while (liebre != null && liebre.Siguiente != null)
+            {
+
+                liebre = liebre.Siguiente;
+                liebre = liebre.Siguiente;
+                tortuga = tortuga.Siguiente;
+                if (tortuga == liebre)
+                {
+                    return true;
+                }
+
+            }
+            return false;
 
         }
         public void Rotar(int k)
@@ -402,7 +419,7 @@ namespace ListaEnlazada
             Nodo<T> preAux = null;
             Nodo<T> refHead = Head;
             int contador = 0;
-            if(Head == null)
+            if (Head == null)
             {
                 Console.WriteLine("No se puede rotar una lista vacía");
                 return;
@@ -419,7 +436,7 @@ namespace ListaEnlazada
             }
             Head = aux;
             preAux.Siguiente = null;
-            while ( aux.Siguiente != null)
+            while (aux.Siguiente != null)
             {
                 aux = aux.Siguiente;
             }
